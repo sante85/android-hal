@@ -1,4 +1,4 @@
-package com.example.hal.it.rest.hal.resource;
+package it.android.hal.resource;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -6,9 +6,8 @@ import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
-import com.google.gson.JsonObject;
-import com.example.hal.it.rest.hal.http.JacksonRequest;
-import com.example.hal.it.rest.hal.http.RestRequest;
+import it.android.hal.http.JacksonRequest;
+import it.android.hal.http.RestRequest;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -35,7 +34,7 @@ public abstract class Resource implements Serializable {
     public <R extends Resource> List<R> relations(String resource, String id, String relations) {
         String url = ResourceHelper.getInstance().getConfig().getRootUri() + resource + "/" + id + "/" + relations;
 
-        RequestFuture<JsonObject> response = RequestFuture.newFuture();
+        RequestFuture<String> response = RequestFuture.newFuture();
         JavaType type = (JavaType) new TypeReference<R>() {}.getType();
 
         JacksonRequest request = new RestRequest(Request.Method.GET, url, null, type, response);
@@ -70,10 +69,9 @@ public abstract class Resource implements Serializable {
         return null;
     }
 
-    private <R extends Resource> List<R> parseResponse(JsonObject jsonObject, String relations) throws IOException {
+    private <R extends Resource> List<R> parseResponse(String jsonObject, String relations) throws IOException {
         TypeReference<List<R>> typeReference = new TypeReference<List<R>>() {};
-        return ResourceHelper.getInstance().getConfig().getMapper().readValue(jsonObject.getAsJsonObject("_embedded")
-                .getAsJsonArray(relations).getAsString(), typeReference);
+        return ResourceHelper.getInstance().getConfig().getMapper().readValue(jsonObject, typeReference);
     }
 
     private <R extends Resource> R parseResponse(String jsonObject) throws IOException {

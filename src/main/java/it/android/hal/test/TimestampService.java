@@ -1,6 +1,6 @@
-package com.example.hal.it.rest.hal.test;
+package it.android.hal.test;
 
-import com.example.hal.it.rest.hal.service.RestService;
+import it.android.hal.service.RestService;
 import com.masvis.meappostmark.domain.Timestamp;
 
 public class TimestampService extends RestService<Timestamp, Timestamp> {

@@ -1,9 +1,9 @@
-package com.example.hal.it.rest.hal.resource;
+package it.android.hal.resource;
 
 import android.content.Context;
 
 import com.android.volley.Response;
-import com.example.hal.it.rest.hal.config.RestConfig;
+import it.android.hal.config.RestConfig;
 
 public class ResourceHelper {
 

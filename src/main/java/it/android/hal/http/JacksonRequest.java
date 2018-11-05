@@ -1,4 +1,4 @@
-package com.example.hal.it.rest.hal.http;
+package it.android.hal.http;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -6,7 +6,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
 import com.fasterxml.jackson.databind.JavaType;
-import com.example.hal.it.rest.hal.resource.ResourceHelper;
+import it.android.hal.resource.ResourceHelper;
 
 public class JacksonRequest<T> extends JsonRequest<T> {
 

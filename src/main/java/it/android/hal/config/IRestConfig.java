@@ -1,4 +1,4 @@
-package com.example.hal.it.rest.hal.config;
+package it.android.hal.config;
 
 import java.util.Map;
 

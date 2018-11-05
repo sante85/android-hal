@@ -1,4 +1,4 @@
-package com.example.hal.it.rest.hal.service;
+package it.android.hal.service;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -6,11 +6,10 @@ import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
-import com.google.gson.JsonObject;
-import com.example.hal.it.rest.hal.http.JacksonRequest;
-import com.example.hal.it.rest.hal.http.RestRequest;
-import com.example.hal.it.rest.hal.resource.Resource;
-import com.example.hal.it.rest.hal.resource.ResourceHelper;
+import it.android.hal.http.JacksonRequest;
+import it.android.hal.http.RestRequest;
+import it.android.hal.resource.Resource;
+import it.android.hal.resource.ResourceHelper;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,22 +1,36 @@
 apply plugin: 'com.android.library'
 
+
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+    }
+}
+
+repositories {
+    jcenter()
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
+}
+
 group = 'it.android.hal'
 version = '1.0.0'
 
 android {
-    compileSdkVersion 8
-    defaultConfig {
-        minSdkVersion 8
-    }
+    compileSdkVersion 25
 }
 
-dependencies {
-    def jackson_version = "2.9.7"
-
-    implementation "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
-    implementation "com.fasterxml.jackson.core:jackson-core:$jackson_version"
-    implementation "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xep:ParameterComment:ERROR"
 }
 
-sourceCompatibility = "8"
-targetCompatibility = "8"
+apply from: 'rules.gradle'

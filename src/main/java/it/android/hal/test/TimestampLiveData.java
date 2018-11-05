@@ -1,7 +1,6 @@
-package com.example.hal.it.rest.hal.test;
+package it.android.hal.test;
 
-import com.example.hal.it.rest.hal.livedata.RestLiveData;
-import com.masvis.meappostmark.domain.Timestamp;
+import it.android.hal.livedata.RestLiveData;
 
 public class TimestampLiveData extends RestLiveData<Timestamp> {
 }

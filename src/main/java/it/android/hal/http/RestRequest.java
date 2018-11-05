@@ -1,10 +1,11 @@
-package com.example.hal.it.rest.hal.http;
+package it.android.hal.http;
 
 import com.android.volley.Response;
 import com.fasterxml.jackson.databind.JavaType;
-import com.example.hal.it.rest.hal.resource.Resource;
 
 import java.util.Map;
+
+import it.android.hal.resource.Resource;
 
 public class RestRequest<E extends Resource> extends JacksonRequest {
 

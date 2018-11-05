@@ -1,4 +1,4 @@
-package com.example.hal.it.rest.hal.test;
+package it.android.hal.test;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,9 +10,9 @@ import android.view.View;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.masvis.meappostmark.R;
-import com.example.hal.it.rest.hal.config.RestConfig;
-import com.example.hal.it.rest.hal.resource.ResourceHelper;
-import com.example.hal.it.rest.hal.task.RestServiceAsync;
+import it.android.hal.config.RestConfig;
+import it.android.hal.resource.ResourceHelper;
+import it.android.hal.task.RestServiceAsync;
 import com.masvis.meappostmark.domain.Timestamp;
 
 import java.util.Map;

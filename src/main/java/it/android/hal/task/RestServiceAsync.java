@@ -1,11 +1,11 @@
-package com.example.hal.it.rest.hal.task;
+package it.android.hal.task;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 import android.os.AsyncTask;
 
-import com.example.hal.it.rest.hal.livedata.RestLiveData;
-import com.example.hal.it.rest.hal.service.RestService;
+import it.android.hal.livedata.RestLiveData;
+import it.android.hal.service.RestService;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

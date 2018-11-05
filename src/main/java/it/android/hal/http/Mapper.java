@@ -1,4 +1,4 @@
-package com.example.hal.it.rest.hal.http;
+package it.android.hal.http;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;

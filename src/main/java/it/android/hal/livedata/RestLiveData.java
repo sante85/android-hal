@@ -1,4 +1,4 @@
-package com.example.hal.it.rest.hal.livedata;
+package it.android.hal.livedata;
 
 import android.arch.lifecycle.LiveData;
 
