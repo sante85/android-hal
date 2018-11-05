@@ -41,7 +41,7 @@ public class RestService<E extends Resource, R extends Resource> {
         RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
         requestQueue.add(request);
         try {
-            response.get(10, TimeUnit.MINUTES);
+            response.get(ResourceHelper.getInstance().getConfig().getTimeout(), ResourceHelper.getInstance().getConfig().getTimeoutUnit());
         } catch (InterruptedException | TimeoutException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class RestService<E extends Resource, R extends Resource> {
         RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
         requestQueue.add(request);
         try {
-            response.get(10, TimeUnit.MINUTES);
+            response.get(ResourceHelper.getInstance().getConfig().getTimeout(), ResourceHelper.getInstance().getConfig().getTimeoutUnit());
         } catch (InterruptedException | TimeoutException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -77,7 +77,7 @@ public class RestService<E extends Resource, R extends Resource> {
         RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
         requestQueue.add(request);
         try {
-            response.get(10, TimeUnit.MINUTES);
+            response.get(ResourceHelper.getInstance().getConfig().getTimeout(), ResourceHelper.getInstance().getConfig().getTimeoutUnit());
         } catch (InterruptedException | TimeoutException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -95,7 +95,7 @@ public class RestService<E extends Resource, R extends Resource> {
         RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
         requestQueue.add(request);
         try {
-            return parseResponse(response.get(10, TimeUnit.MINUTES));
+            return parseResponse(response.get(ResourceHelper.getInstance().getConfig().getTimeout(), ResourceHelper.getInstance().getConfig().getTimeoutUnit()));
         } catch (InterruptedException | TimeoutException | ExecutionException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -116,7 +116,7 @@ public class RestService<E extends Resource, R extends Resource> {
         RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
         requestQueue.add(request);
         try {
-            return parseResponse(response.get(10, TimeUnit.MINUTES));
+            return parseResponse(response.get(ResourceHelper.getInstance().getConfig().getTimeout(), ResourceHelper.getInstance().getConfig().getTimeoutUnit()));
         } catch (InterruptedException | TimeoutException | ExecutionException e) {
             e.printStackTrace();
         } catch (IOException e) {

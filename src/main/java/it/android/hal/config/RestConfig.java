@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
+import java.util.concurrent.TimeUnit;
+
 public abstract class RestConfig implements IRestConfig {
 
     public RestConfig() {
@@ -17,4 +19,8 @@ public abstract class RestConfig implements IRestConfig {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private final SimpleModule module = new SimpleModule();
+
+    public abstract long getTimeout();
+
+    public abstract TimeUnit getTimeoutUnit();
 }
