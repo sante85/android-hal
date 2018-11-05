@@ -4,6 +4,7 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.Map;
 
@@ -13,9 +14,12 @@ public class RestRequest<E extends Resource> extends JacksonRequest {
 
     private RestRequest<Resource> config;
 
-    public RestRequest(int method, String url, E body,
-                       Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        super(method, url, body, listener, errorListener);
+    public RestRequest(int method,
+                       String url,
+                       E body,
+                       Response.Listener<String> listener,
+                       Response.ErrorListener errorListener) throws JsonProcessingException {
+        super(method, url, Mapper.get().writeValueAsString(body), listener, errorListener);
     }
 
     public RestRequest<Resource> getConfig() {

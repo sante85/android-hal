@@ -22,6 +22,7 @@ public class RestServiceAsync<Params, Progress, Result> extends AsyncTask<Params
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected Result doInBackground(Params... params) {
         Method method;
         try {

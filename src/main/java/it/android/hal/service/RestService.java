@@ -6,14 +6,12 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JavaType;
 
 import junit.framework.Assert;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import it.android.hal.http.RestRequest;
@@ -31,71 +29,73 @@ public class RestService<E extends Resource, R extends Resource> {
 
     @SuppressWarnings("unused")
     public void create(E entity) {
-        String url = ResourceHelper.getInstance().getConfig().getRootUri() + resourceUrl;
-
-        RequestFuture<String> response = RequestFuture.newFuture();
-        JavaType type = (JavaType) new TypeReference<R>() {
-        }.getType();
-
-        RestRequest<E> request = new RestRequest<>(Request.Method.POST, url, entity, response, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
-        requestQueue.add(request);
         try {
-            response.get(ResourceHelper.getInstance().getConfig().getTimeout(), ResourceHelper.getInstance().getConfig().getTimeoutUnit());
+
+            String url = ResourceHelper.getInstance().getConfig().getRootUri() + resourceUrl;
+
+            RequestFuture<String> response = RequestFuture.newFuture();
+            RestRequest<E> request = new RestRequest<>(Request.Method.POST, url, entity, response, errorListener);
+            RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
+            requestQueue.add(request);
+
+            response.get(ResourceHelper.getInstance().getConfig().getTimeout(),
+                    ResourceHelper.getInstance().getConfig().getTimeoutUnit());
         } catch (InterruptedException | TimeoutException | ExecutionException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @SuppressWarnings("unused")
     public void update(E entity) {
-        String url = ResourceHelper.getInstance().getConfig().getRootUri() + resourceUrl;
-
-        RequestFuture<String> response = RequestFuture.newFuture();
-        JavaType type = (JavaType) new TypeReference<R>() {
-        }.getType();
-
-        RestRequest<E> request = new RestRequest<>(Request.Method.PUT, url, entity, response, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
-        requestQueue.add(request);
         try {
-            response.get(ResourceHelper.getInstance().getConfig().getTimeout(), ResourceHelper.getInstance().getConfig().getTimeoutUnit());
+            String url = ResourceHelper.getInstance().getConfig().getRootUri() + resourceUrl;
+
+            RequestFuture<String> response = RequestFuture.newFuture();
+            RestRequest<E> request = new RestRequest<>(Request.Method.PUT, url, entity, response, errorListener);
+            RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
+            requestQueue.add(request);
+            response.get(ResourceHelper.getInstance().getConfig().getTimeout(),
+                    ResourceHelper.getInstance().getConfig().getTimeoutUnit());
         } catch (InterruptedException | TimeoutException | ExecutionException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @SuppressWarnings("unused")
     public void delete(E entity) {
-        String url = ResourceHelper.getInstance().getConfig().getRootUri() + resourceUrl + "/" + entity.getId();
-
-        RequestFuture<String> response = RequestFuture.newFuture();
-        JavaType type = (JavaType) new TypeReference<R>() {
-        }.getType();
-
-        RestRequest<E> request = new RestRequest<>(Request.Method.DELETE, url, null, response, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
-        requestQueue.add(request);
         try {
-            response.get(ResourceHelper.getInstance().getConfig().getTimeout(), ResourceHelper.getInstance().getConfig().getTimeoutUnit());
+            String url = ResourceHelper.getInstance().getConfig().getRootUri() + resourceUrl + "/" + entity.getId();
+
+            RequestFuture<String> response = RequestFuture.newFuture();
+            RestRequest<E> request = new RestRequest<>(Request.Method.DELETE, url, null, response, errorListener);
+            RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
+            requestQueue.add(request);
+
+            response.get(ResourceHelper.getInstance().getConfig().getTimeout(),
+                    ResourceHelper.getInstance().getConfig().getTimeoutUnit());
         } catch (InterruptedException | TimeoutException | ExecutionException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @SuppressWarnings("unused")
     public List<R> search(String query) {
-        String url = ResourceHelper.getInstance().getConfig().getRootUri() + resourceUrl + "search/" + query;
-
-        RequestFuture<String> response = RequestFuture.newFuture();
-        JavaType type = (JavaType) new TypeReference<R>() {
-        }.getType();
-
-        RestRequest<E> request = new RestRequest<>(Request.Method.GET, url, null, response, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
-        requestQueue.add(request);
         try {
-            return parseResponse(response.get(ResourceHelper.getInstance().getConfig().getTimeout(), ResourceHelper.getInstance().getConfig().getTimeoutUnit()));
+            String url = ResourceHelper.getInstance().getConfig().getRootUri() + resourceUrl + "/search/" + query;
+
+            RequestFuture<String> response = RequestFuture.newFuture();
+            RestRequest<E> request = new RestRequest<>(Request.Method.GET, url, null, response, errorListener);
+            RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
+            requestQueue.add(request);
+
+            return parseResponse(response.get(ResourceHelper.getInstance().getConfig().getTimeout(),
+                    ResourceHelper.getInstance().getConfig().getTimeoutUnit()));
         } catch (InterruptedException | TimeoutException | ExecutionException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -106,16 +106,14 @@ public class RestService<E extends Resource, R extends Resource> {
 
     @SuppressWarnings("unused")
     public List<R> findAll() {
-        String url = ResourceHelper.getInstance().getConfig().getRootUri() + resourceUrl;
-
-        RequestFuture<String> response = RequestFuture.newFuture();
-        JavaType type = (JavaType) new TypeReference<R>() {
-        }.getType();
-
-        RestRequest<E> request = new RestRequest<>(Request.Method.GET, url, null, response, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
-        requestQueue.add(request);
         try {
+            String url = ResourceHelper.getInstance().getConfig().getRootUri() + resourceUrl;
+
+            RequestFuture<String> response = RequestFuture.newFuture();
+            RestRequest<E> request = new RestRequest<>(Request.Method.GET, url, null, response, errorListener);
+            RequestQueue requestQueue = Volley.newRequestQueue(ResourceHelper.getInstance().getContext());
+            requestQueue.add(request);
+
             return parseResponse(response.get(ResourceHelper.getInstance().getConfig().getTimeout(), ResourceHelper.getInstance().getConfig().getTimeoutUnit()));
         } catch (InterruptedException | TimeoutException | ExecutionException e) {
             e.printStackTrace();
