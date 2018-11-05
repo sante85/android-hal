@@ -1,7 +1,9 @@
 package it.android.hal.http;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
 import com.android.volley.Response;
-import com.fasterxml.jackson.databind.JavaType;
+import com.android.volley.toolbox.HttpHeaderParser;
 
 import java.util.Map;
 
@@ -11,8 +13,9 @@ public class RestRequest<E extends Resource> extends JacksonRequest {
 
     private RestRequest<Resource> config;
 
-    public RestRequest(int method, String url, E body, JavaType type, Response.Listener<E> listener) {
-        super(method, url, body, type, listener);
+    public RestRequest(int method, String url, E body,
+                       Response.Listener<String> listener, Response.ErrorListener errorListener) {
+        super(method, url, body, listener, errorListener);
     }
 
     public RestRequest<Resource> getConfig() {
@@ -26,5 +29,15 @@ public class RestRequest<E extends Resource> extends JacksonRequest {
     @Override
     public Map<String, String> getHeaders() {
         return config.getHeaders();
+    }
+
+    @Override
+    protected Response<String> parseNetworkResponse(NetworkResponse response) {
+        try {
+            String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+            return Response.success(jsonString, HttpHeaderParser.parseCacheHeaders(response));
+        } catch (Exception e) {
+            return Response.error(new ParseError(e));
+        }
     }
 }

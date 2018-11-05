@@ -1,46 +1,33 @@
 package it.android.hal.http;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.ParseError;
 import com.android.volley.Response;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
-import com.fasterxml.jackson.databind.JavaType;
+
 import it.android.hal.resource.ResourceHelper;
 
-public class JacksonRequest<T> extends JsonRequest<T> {
-
-    private JavaType responseType;
+public abstract class JacksonRequest extends JsonRequest<String> {
 
     /**
      * Creates a new request.
      *
-     * @param method        the HTTP method to use
-     * @param url           URL to fetch the JSON from
-     * @param requestData   A {@link Object} to post and convert into json as the request. Null is allowed and indicates no parameters will be posted along with request.
-     * @param listener      Listener to receive the JSON response
+     * @param method      the HTTP method to use
+     * @param url         URL to fetch the JSON from
+     * @param requestData A {@link Object} to post and convert into json as the request. Null is allowed and indicates no parameters will be posted along with request.
+     * @param listener    Listener to receive the JSON response
+     * @param errorListener    Listener to receive the JSON response error
      */
     JacksonRequest(int method,
                    String url,
                    Object requestData,
-                   JavaType responseType,
-                   Response.Listener<T> listener) {
-        super(method, url,
+                   Response.Listener<String> listener,
+                   Response.ErrorListener errorListener
+    ) {
+        super(method,
+                url,
                 (requestData == null) ? null : Mapper.string(requestData),
                 listener,
-                ResourceHelper.getInstance().getErrorListener());
-        this.responseType = responseType;
+                errorListener
+        );
     }
 
-    @Override
-    protected Response<T> parseNetworkResponse(NetworkResponse response) {
-        try {
-            String jsonString = new String(response.data,
-                    HttpHeaderParser.parseCharset(response.headers));
-            return Response.success(Mapper.objectOrThrow(jsonString, responseType),
-                    HttpHeaderParser.parseCacheHeaders(response));
-        } catch (Exception e) {
-            return Response.error(new ParseError(e));
-        }
-    }
 }
