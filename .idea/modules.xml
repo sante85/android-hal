@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/android-hal.iml" filepath="$PROJECT_DIR$/android-hal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidHal.iml" filepath="$PROJECT_DIR$/androidHal.iml" />
     </modules>
   </component>
 </project>
