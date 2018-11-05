@@ -29,8 +29,4 @@ android {
     compileSdkVersion 25
 }
 
-tasks.withType(JavaCompile) {
-    options.compilerArgs << "-Xep:ParameterComment:ERROR"
-}
-
 apply from: 'rules.gradle'
