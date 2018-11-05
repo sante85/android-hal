@@ -14,16 +14,13 @@ android {
     }
 }
 
-tasks.withType(JavaCompile) {
-    options.compilerArgs << "-Xlint:unchecked" << "-Werror"
-}
-
 dependencies {
     def jackson_version = "2.9.7"
-    compileOnly "com.android.support:support-annotations:27.1.1"
+    def api_27 = "27.1.1"
+    implementation "com.android.support:support-annotations:$api_27"
 
-    implementation "android.arch.lifecycle:viewmodel:1.1.0"
-    implementation "android.arch.lifecycle:livedata-core:1.1.0"
+    implementation "android.arch.lifecycle:viewmodel:1.1.1"
+    implementation "android.arch.lifecycle:livedata-core:1.1.1"
     implementation 'com.android.volley:volley:1.1.0'
     implementation "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
     implementation "com.fasterxml.jackson.core:jackson-core:$jackson_version"
@@ -31,8 +28,8 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
 
-    testImplementation 'com.android.support:appcompat-v7:27.1.1'
-    testImplementation 'com.android.support:design:27.1.1'
+    testImplementation "com.android.support:appcompat-v7:$api_27"
+    testImplementation "com.android.support:design:$api_27"
 
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
